@@ -50,6 +50,7 @@ export default tseslint.config({
 })
 ```
 
+#About this Project :- 
 - A pure frontend based game named hangman
 - This is a React project
 - This Project uses funcdamentals of react such as react hooks and state management.
