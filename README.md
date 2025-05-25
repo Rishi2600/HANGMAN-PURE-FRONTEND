@@ -29,6 +29,8 @@ export default tseslint.config({
 - Optionally add `...tseslint.configs.stylisticTypeChecked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
+- A pure frontend based game named hangman
+
 ```js
 // eslint.config.js
 import react from 'eslint-plugin-react'
