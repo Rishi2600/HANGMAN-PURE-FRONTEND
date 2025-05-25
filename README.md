@@ -30,6 +30,7 @@ export default tseslint.config({
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
 - A pure frontend based game named hangman
+- this is a React project 
 
 ```js
 // eslint.config.js
