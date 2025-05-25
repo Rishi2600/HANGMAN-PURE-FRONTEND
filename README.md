@@ -31,7 +31,7 @@ export default tseslint.config({
 
 - A pure frontend based game named hangman
 - This is a React project
-- This Project uses funcdamentals of react
+- This Project uses funcdamentals of react such as react hooks and state management.
 
 ```js
 // eslint.config.js
