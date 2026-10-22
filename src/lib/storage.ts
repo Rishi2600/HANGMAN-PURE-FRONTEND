@@ -8,10 +8,10 @@ export const STORAGE_KEYS = {
   settings: 'settings',
 } as const
 
-type Key = (typeof STORAGE_KEYS)[keyof typeof STORAGE_KEYS]
+export type StorageKey = (typeof STORAGE_KEYS)[keyof typeof STORAGE_KEYS]
 
 // localStorage can throw (private mode, quota, disabled cookies), so every access is guarded.
-export function readStorage<T>(key: Key, fallback: T, isValid?: (value: unknown) => boolean): T {
+export function readStorage<T>(key: StorageKey, fallback: T, isValid?: (value: unknown) => boolean): T {
   try {
     const raw = localStorage.getItem(PREFIX + key)
     if (raw === null) return fallback
@@ -22,7 +22,7 @@ export function readStorage<T>(key: Key, fallback: T, isValid?: (value: unknown)
   }
 }
 
-export function writeStorage(key: Key, value: unknown): void {
+export function writeStorage(key: StorageKey, value: unknown): void {
   try {
     localStorage.setItem(PREFIX + key, JSON.stringify(value))
   } catch {
