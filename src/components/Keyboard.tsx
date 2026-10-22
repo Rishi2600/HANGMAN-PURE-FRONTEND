@@ -9,10 +9,11 @@ type Props = {
   onGuess: (letter: string) => void
 }
 
+// No colour to lean on, so state is shown by fill: hits are solid ink, misses fade out and get struck through.
 const KEY_STYLES = {
-  idle: 'bg-white text-ink shadow-slate-300 hover:bg-amber-50 dark:bg-slate-700 dark:text-slate-100 dark:shadow-slate-950 dark:hover:bg-slate-600',
-  correct: 'bg-emerald-500 text-white shadow-emerald-700',
-  wrong: 'bg-rose-200 text-rose-700 opacity-60 shadow-rose-300 dark:bg-rose-950 dark:text-rose-300 dark:shadow-rose-900',
+  idle: 'border-ink bg-surface text-ink shadow-hard-sm hover:bg-wash',
+  correct: 'border-ink bg-ink text-paper',
+  wrong: 'border-line bg-transparent text-muted line-through decoration-2',
 }
 
 // memo: the keyboard only re-renders when its props change, not on every parent render.
@@ -32,7 +33,7 @@ function KeyboardImpl({ word, guessed, disabled, onGuess }: Props) {
                 onClick={() => onGuess(letter)}
                 disabled={used || disabled}
                 aria-label={`${letter.toUpperCase()}${used ? (state === 'correct' ? ', in the word' : ', not in the word') : ''}`}
-                className={`h-12 min-w-0 flex-1 basis-0 rounded-lg font-display text-lg font-semibold uppercase shadow-[0_3px_0] transition-[transform,background-color] duration-150 enabled:active:translate-y-0.5 enabled:active:shadow-[0_1px_0] disabled:cursor-not-allowed sm:h-14 sm:max-w-12 sm:text-xl ${KEY_STYLES[state]} ${disabled && !used ? 'opacity-50' : ''}`}
+                className={`h-12 min-w-0 flex-1 basis-0 rounded-md border-2 font-mono text-lg font-bold uppercase transition-[transform,box-shadow,background-color] duration-100 enabled:active:translate-x-0.5 enabled:active:translate-y-0.5 enabled:active:shadow-none disabled:cursor-not-allowed sm:h-14 sm:max-w-12 sm:text-xl ${KEY_STYLES[state]} ${disabled && !used ? 'opacity-40' : ''}`}
               >
                 {letter}
               </button>

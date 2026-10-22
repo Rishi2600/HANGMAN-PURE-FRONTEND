@@ -8,6 +8,7 @@ import { Button } from './Button'
 import { GameOverModal } from './GameOverModal'
 import { HangmanDrawing } from './HangmanDrawing'
 import { HangmanWord } from './HangmanWord'
+import { ArrowIcon } from './Icons'
 import { Keyboard } from './Keyboard'
 import { LivesBar } from './LivesBar'
 
@@ -48,10 +49,10 @@ export function GameScreen({ game, stats, onGuess, onHint, onPlayAgain, onMenu }
   return (
     <div className="flex flex-1 flex-col items-center gap-4 sm:gap-6">
       <div className="flex w-full flex-wrap items-center justify-between gap-2">
-        <span className="rounded-full bg-white px-3 py-1 text-sm font-bold shadow-sm dark:bg-slate-800">
-          {game.mode === 'daily' ? `📅 Daily #${dailyNumber(game.dailyKey ?? '')}` : `🎯 ${DIFFICULTIES[game.difficulty].label}`}
+        <span className="rounded-md border-2 border-ink px-2.5 py-1 font-mono text-xs font-bold tracking-widest uppercase">
+          {game.mode === 'daily' ? `Daily #${dailyNumber(game.dailyKey ?? '')}` : DIFFICULTIES[game.difficulty].label}
           {' · '}
-          {category.emoji} {category.label}
+          {category.label}
         </span>
         <LivesBar livesLeft={lives} maxLives={DIFFICULTIES[game.difficulty].lives} />
       </div>
@@ -66,15 +67,16 @@ export function GameScreen({ game, stats, onGuess, onHint, onPlayAgain, onMenu }
           <motion.p
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            className="rounded-2xl bg-amber-100 px-4 py-2 font-semibold text-amber-900 dark:bg-amber-400/15 dark:text-amber-200"
+            className="rounded-md border-2 border-dashed border-ink px-4 py-2 font-medium"
           >
-            💡 {game.hint}
+            <span className="mr-2 font-mono text-xs font-bold tracking-widest text-muted uppercase">Hint</span>
+            {game.hint}
           </motion.p>
         ) : finished ? null : hintCost === null ? (
-          <p className="text-sm text-slate-500 dark:text-slate-400">No hints on Hard — you've got this.</p>
+          <p className="text-sm text-muted">No hints on Hard — you've got this.</p>
         ) : (
           <Button variant="secondary" className="py-2 text-base" onClick={onHint} disabled={!canUseHint(game)}>
-            💡 Hint {hintCost > 0 ? `(costs ${hintCost} ❤️)` : '(free)'}
+            Hint {hintCost > 0 ? `(costs ${hintCost} ${hintCost === 1 ? 'life' : 'lives'})` : '(free)'}
           </Button>
         )}
       </div>
@@ -84,13 +86,13 @@ export function GameScreen({ game, stats, onGuess, onHint, onPlayAgain, onMenu }
           <Button variant="secondary" onClick={() => setShowResult(true)}>
             View result
           </Button>
-          <Button onClick={onPlayAgain}>{game.mode === 'daily' ? 'Play classic' : 'Play again'} ▶</Button>
+          <Button onClick={onPlayAgain}>{game.mode === 'daily' ? 'Play classic' : 'Play again'} <ArrowIcon /></Button>
         </div>
       )}
 
       <Keyboard word={game.word} guessed={game.guessed} disabled={finished} onGuess={onGuess} />
 
-      <p className="hidden text-sm text-slate-500 sm:block dark:text-slate-400">
+      <p className="hidden font-mono text-xs text-muted sm:block">
         Tip: type letters on your keyboard{finished ? ' · press Enter for a new game' : ''}.
       </p>
 

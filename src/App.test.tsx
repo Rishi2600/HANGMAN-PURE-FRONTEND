@@ -22,7 +22,7 @@ describe('<App />', () => {
     const { word } = ALL_WORDS[0]
     renderApp()
 
-    await user.click(screen.getByRole('button', { name: /^play ▶/i }))
+    await user.click(screen.getByRole('button', { name: /^play$/i }))
     // AnimatePresence mode="wait" mounts the game screen after the menu's exit animation.
     const keyboard = await screen.findByRole('group', { name: 'Letter keyboard' })
 
@@ -42,11 +42,11 @@ describe('<App />', () => {
   it('charges a life for a hint on medium and shows it', async () => {
     const user = userEvent.setup()
     renderApp()
-    await user.click(screen.getByRole('button', { name: /^play ▶/i }))
+    await user.click(screen.getByRole('button', { name: /^play$/i }))
 
     await user.click(await screen.findByRole('button', { name: /hint/i }))
     expect(lives()).toBe('7')
-    expect(screen.getByText(/💡/)).toBeInTheDocument()
+    expect(screen.getByText('Hint', { exact: true })).toBeInTheDocument()
   })
 
   it('persists stats across a remount', async () => {
@@ -54,7 +54,7 @@ describe('<App />', () => {
     const user = userEvent.setup()
     const { word } = ALL_WORDS[0]
     const { unmount } = renderApp()
-    await user.click(screen.getByRole('button', { name: /^play ▶/i }))
+    await user.click(screen.getByRole('button', { name: /^play$/i }))
     await screen.findByRole('group', { name: 'Letter keyboard' })
     for (const letter of new Set(word)) await user.keyboard(letter)
     await screen.findByRole('dialog')

@@ -5,6 +5,7 @@ import type { Stats } from '../game/stats'
 import { Button } from './Button'
 import { ChoiceGroup } from './ChoiceGroup'
 import { Countdown } from './Countdown'
+import { ArrowIcon } from './Icons'
 
 export type ClassicOptions = { category: CategoryId | 'any'; difficulty: Difficulty }
 
@@ -21,8 +22,8 @@ type Props = {
 }
 
 const CATEGORY_OPTIONS = [
-  { value: 'any' as const, label: '🎲 Any' },
-  ...CATEGORIES.map((c) => ({ value: c.id, label: `${c.emoji} ${c.label}` })),
+  { value: 'any' as const, label: 'Any' },
+  ...CATEGORIES.map((c) => ({ value: c.id, label: c.label })),
 ]
 
 const DIFFICULTY_OPTIONS = (Object.keys(DIFFICULTIES) as Difficulty[]).map((d) => ({
@@ -34,31 +35,37 @@ const DIFFICULTY_OPTIONS = (Object.keys(DIFFICULTIES) as Difficulty[]).map((d) =
 const DAILY_CTA = {
   new: "Play today's word",
   playing: 'Resume daily',
-  won: 'Solved ✅ · View result',
-  lost: 'Missed ❌ · View result',
+  won: 'Solved · View result',
+  lost: 'Missed · View result',
 }
 
-const card = 'rounded-3xl bg-white p-5 shadow-[0_6px_0] shadow-slate-200 sm:p-6 dark:bg-slate-800 dark:shadow-slate-950'
+const card = 'rounded-md border-2 border-ink p-5 sm:p-6'
+const eyebrow = 'font-mono text-xs font-bold tracking-widest uppercase'
 
 export function StartScreen(props: Props) {
   const { today, dailyStatus, options, onOptionsChange, canResume, stats } = props
 
   return (
     <div className="flex flex-col gap-5 pb-4">
-      <section className="py-2 text-center">
-        <p className="font-display text-2xl font-semibold sm:text-3xl">Guess the word. Save the stick figure.</p>
+      <section className="py-2">
+        <p className="font-display text-4xl leading-[1.05] font-bold tracking-[-0.04em] sm:text-6xl">
+          Guess the word.
+          <br />
+          <span className="text-muted">Save the stick figure.</span>
+        </p>
         {stats.played > 0 && (
-          <p className="mt-2 text-slate-600 dark:text-slate-300">
-            🔥 Streak {stats.currentStreak} · 🏆 Best score {stats.bestScore}
+          <p className={`${eyebrow} mt-4 text-muted`}>
+            Streak {stats.currentStreak} · Best score {stats.bestScore}
           </p>
         )}
       </section>
 
-      <section className={`${card} bg-gradient-to-br from-amber-100 to-orange-100 shadow-amber-200 dark:from-amber-400/15 dark:to-orange-500/10 dark:bg-slate-800`}>
+      <section className={`${card} bg-ink text-paper`}>
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <h2 className="font-display text-2xl font-bold">📅 Daily challenge #{dailyNumber(today)}</h2>
-            <p className="text-slate-600 dark:text-slate-300">
+            <p className={`${eyebrow} opacity-60`}>No. {dailyNumber(today)}</p>
+            <h2 className="font-display text-2xl font-bold tracking-tight">Daily challenge</h2>
+            <p className="opacity-70">
               One word for everyone, every day.{' '}
               {dailyStatus === 'won' || dailyStatus === 'lost' ? (
                 <>
@@ -69,14 +76,14 @@ export function StartScreen(props: Props) {
               )}
             </p>
           </div>
-          <Button onClick={props.onPlayDaily} variant={dailyStatus === 'new' ? 'primary' : 'secondary'}>
+          <Button onClick={props.onPlayDaily} variant="inverse">
             {DAILY_CTA[dailyStatus]}
           </Button>
         </div>
       </section>
 
-      <section className={`${card} flex flex-col gap-5`}>
-        <h2 className="font-display text-2xl font-bold">🎯 Classic</h2>
+      <section className={`${card} flex flex-col gap-5 bg-surface shadow-hard`}>
+        <h2 className="font-display text-2xl font-bold tracking-tight">Classic</h2>
         <ChoiceGroup
           legend="Category"
           value={options.category}
@@ -90,15 +97,15 @@ export function StartScreen(props: Props) {
             options={DIFFICULTY_OPTIONS}
             onChange={(difficulty) => onOptionsChange({ ...options, difficulty })}
           />
-          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{DIFFICULTIES[options.difficulty].blurb}</p>
+          <p className="mt-2 text-sm text-muted">{DIFFICULTIES[options.difficulty].blurb}</p>
         </div>
         <div className="flex flex-wrap gap-3">
           <Button onClick={props.onPlayClassic} className="flex-1">
-            {canResume ? 'New game' : 'Play'} ▶
+            {canResume ? 'New game' : 'Play'} <ArrowIcon />
           </Button>
           {canResume && (
             <Button variant="secondary" onClick={props.onResume} className="flex-1">
-              Resume ↩
+              Resume
             </Button>
           )}
         </div>

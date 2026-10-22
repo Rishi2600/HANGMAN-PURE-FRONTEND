@@ -41,14 +41,14 @@ function HangmanDrawingImpl({ livesLeft, status }: Props) {
       aria-label={`Hangman drawing: ${shown} of ${PARTS.length} parts drawn`}
       className="h-56 w-auto sm:h-72"
       fill="none"
-      strokeWidth={7}
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      strokeWidth={6}
+      strokeLinecap="square"
+      strokeLinejoin="miter"
     >
-      <g className="stroke-amber-800 dark:stroke-amber-300">{indices.filter((i) => i < GALLOWS).map(stroke)}</g>
+      <g className="stroke-muted">{indices.filter((i) => i < GALLOWS).map(stroke)}</g>
 
       <motion.g
-        className={lost ? 'animate-sway stroke-rose-600 dark:stroke-rose-400' : 'stroke-ink dark:stroke-slate-100'}
+        className={`stroke-ink ${lost ? 'animate-sway' : ''}`}
         style={{ transformOrigin: '140px 20px', transformBox: 'view-box' }}
         animate={status === 'won' ? { y: [0, -12, 0, -6, 0] } : { y: 0 }}
         transition={{ duration: 0.8 }}
