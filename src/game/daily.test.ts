@@ -22,7 +22,7 @@ describe('daily challenge', () => {
     const game = buildDailyGame(key, { date: key, moves, status: 'won' }, 7)
     expect(game.status).toBe('won')
     expect(game.hintUsed).toBe(true)
-    expect(shareText(game)).toMatch(/^Hangman Daily #295 ✅/)
+    expect(shareText(game)).toMatch(/^Hangman Daily #295 · Solved/)
   })
 
   it('ignores a record from a different day', () => {

@@ -7,7 +7,7 @@ import { Button } from './Button'
 import { Countdown } from './Countdown'
 import { Modal } from './Modal'
 
-const CHEERS = ['You got it! 🎉', 'Nailed it! 🙌', 'Word wizard! ✨', 'Saved him! 🥳', 'Brilliant! 🌟']
+const CHEERS = ['You got it.', 'Nailed it.', 'Word wizard.', 'Saved him.', 'Brilliant.']
 
 type Props = {
   game: ActiveGame
@@ -45,39 +45,39 @@ export function GameOverModal({ game, stats, onPlayAgain, onMenu, onClose }: Pro
 
   return (
     // Picking by id (not Math.random) keeps rendering pure and the title stable across re-renders.
-    <Modal title={won ? CHEERS[game.id % CHEERS.length] : 'Out of lives 💀'} onClose={onClose}>
+    <Modal title={won ? CHEERS[game.id % CHEERS.length] : 'Out of lives.'} onClose={onClose}>
       <div className="flex flex-col items-center gap-5 text-center">
         <div>
-          <p className="text-sm font-bold tracking-widest text-slate-500 uppercase dark:text-slate-400">The word was</p>
+          <p className="font-mono text-xs font-bold tracking-widest text-muted uppercase">The word was</p>
           <p
-            className={`font-display text-4xl font-bold tracking-wide uppercase ${won ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}`}
+            className={`my-1 font-mono text-4xl font-bold tracking-[0.15em] uppercase ${won ? '' : 'text-muted line-through decoration-2'}`}
           >
             {game.word}
           </p>
-          <p className="mt-1 text-slate-600 dark:text-slate-300">
-            {category.emoji} {category.label} · <span className="italic">{game.hint}</span>
+          <p className="text-muted">
+            {category.label} · <span className="italic">{game.hint}</span>
           </p>
         </div>
 
         {won && (
           <dl className="grid w-full grid-cols-2 gap-3">
-            <div className="rounded-2xl bg-amber-100 p-3 dark:bg-amber-400/15">
-              <dt className="text-xs font-bold text-amber-800 uppercase dark:text-amber-300">Score</dt>
-              <dd className="font-display text-3xl font-bold">+{score(game)}</dd>
+            <div className="rounded-md bg-ink p-3 text-paper">
+              <dt className="font-mono text-xs font-bold tracking-widest uppercase opacity-60">Score</dt>
+              <dd className="font-mono text-3xl font-bold">+{score(game)}</dd>
             </div>
-            <div className="rounded-2xl bg-orange-100 p-3 dark:bg-orange-400/15">
-              <dt className="text-xs font-bold text-orange-800 uppercase dark:text-orange-300">Streak</dt>
-              <dd className="font-display text-3xl font-bold">🔥 {stats.currentStreak}</dd>
+            <div className="rounded-md border-2 border-ink p-3">
+              <dt className="font-mono text-xs font-bold tracking-widest text-muted uppercase">Streak</dt>
+              <dd className="font-mono text-3xl font-bold">{stats.currentStreak}</dd>
             </div>
           </dl>
         )}
 
         {game.mode === 'daily' && (
-          <div className="flex w-full flex-col items-center gap-2 rounded-2xl bg-slate-100 p-4 dark:bg-slate-900/60">
+          <div className="flex w-full flex-col items-center gap-3 rounded-md border-2 border-dashed border-line p-4">
             <Button variant="secondary" onClick={share} className="w-full">
-              {copied ? 'Copied! ✅' : 'Share result 📤'}
+              {copied ? 'Copied to clipboard' : 'Share result'}
             </Button>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
+            <p className="text-sm text-muted">
               Next daily word in <Countdown />
             </p>
           </div>

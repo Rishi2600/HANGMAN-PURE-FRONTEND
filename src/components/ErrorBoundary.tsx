@@ -24,16 +24,16 @@ export class ErrorBoundary extends Component<Props, State> {
 
     return (
       <main className="mx-auto flex min-h-dvh max-w-md flex-col items-center justify-center gap-4 p-6 text-center">
-        <div className="text-6xl">🪢</div>
-        <h1 className="font-display text-3xl font-bold">Something snapped.</h1>
-        <p className="text-slate-600 dark:text-slate-300">
+        <p className="font-mono text-xs font-bold tracking-widest text-muted uppercase">Error</p>
+        <h1 className="font-display text-3xl font-bold tracking-tight">Something snapped.</h1>
+        <p className="text-muted">
           The game hit an unexpected error. Reloading usually fixes it. If not, reset your saved data.
         </p>
         <div className="flex gap-3">
           <button
             type="button"
             onClick={() => location.reload()}
-            className="rounded-xl bg-amber-400 px-5 py-2.5 font-bold text-ink shadow-[0_3px_0] shadow-amber-600"
+            className="rounded-md border-2 border-ink bg-ink px-5 py-2.5 font-bold text-paper"
           >
             Reload
           </button>
@@ -43,7 +43,7 @@ export class ErrorBoundary extends Component<Props, State> {
               clearStorage()
               location.reload()
             }}
-            className="rounded-xl border-2 border-current px-5 py-2.5 font-bold"
+            className="rounded-md border-2 border-ink px-5 py-2.5 font-bold"
           >
             Reset data
           </button>

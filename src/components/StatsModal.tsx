@@ -9,20 +9,20 @@ export default function StatsModal({ stats, onClose, onReset }: Props) {
   const tiles = [
     { label: 'Played', value: stats.played },
     { label: 'Win %', value: winRate(stats) },
-    { label: 'Streak', value: `🔥 ${stats.currentStreak}` },
+    { label: 'Streak', value: stats.currentStreak },
     { label: 'Best streak', value: stats.bestStreak },
     { label: 'Best score', value: stats.bestScore },
     { label: 'Total score', value: stats.totalScore },
   ]
 
   return (
-    <Modal title="Your stats 📊" onClose={onClose}>
+    <Modal title="Your stats" onClose={onClose}>
       <dl className="grid grid-cols-3 gap-2.5">
         {tiles.map(({ label, value }) => (
           // <dt> must come before <dd>; flex-col-reverse shows the value on top.
-          <div key={label} className="flex flex-col-reverse rounded-2xl bg-slate-100 p-3 text-center dark:bg-slate-900/60">
-            <dt className="text-[0.7rem] font-bold tracking-wide text-slate-500 uppercase dark:text-slate-400">{label}</dt>
-            <dd className="font-display text-2xl font-bold sm:text-3xl">{value}</dd>
+          <div key={label} className="flex flex-col-reverse rounded-md border-2 border-line p-3 text-center">
+            <dt className="font-mono text-[0.65rem] font-bold tracking-widest text-muted uppercase">{label}</dt>
+            <dd className="font-mono text-2xl font-bold sm:text-3xl">{value}</dd>
           </div>
         ))}
       </dl>

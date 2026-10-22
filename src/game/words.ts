@@ -1,16 +1,16 @@
 export type CategoryId = 'animals' | 'food' | 'countries' | 'sports' | 'science' | 'music'
 
-export type Category = { id: CategoryId; label: string; emoji: string }
+export type Category = { id: CategoryId; label: string }
 
 export type WordEntry = { word: string; hint: string; category: CategoryId }
 
 export const CATEGORIES: readonly Category[] = [
-  { id: 'animals', label: 'Animals', emoji: '🦊' },
-  { id: 'food', label: 'Food', emoji: '🍕' },
-  { id: 'countries', label: 'Countries', emoji: '🌍' },
-  { id: 'sports', label: 'Sports', emoji: '⚽' },
-  { id: 'science', label: 'Science', emoji: '🔬' },
-  { id: 'music', label: 'Music', emoji: '🎸' },
+  { id: 'animals', label: 'Animals' },
+  { id: 'food', label: 'Food' },
+  { id: 'countries', label: 'Countries' },
+  { id: 'sports', label: 'Sports' },
+  { id: 'science', label: 'Science' },
+  { id: 'music', label: 'Music' },
 ]
 
 // [word, hint] pairs per category. Words are lowercase a–z only.

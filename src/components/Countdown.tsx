@@ -18,7 +18,7 @@ export function Countdown() {
   }, [])
 
   return (
-    <time className="font-display tabular-nums" aria-live="off">
+    <time className="font-mono font-bold tabular-nums" aria-live="off">
       {format(remaining)}
     </time>
   )

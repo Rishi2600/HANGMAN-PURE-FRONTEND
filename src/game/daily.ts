@@ -71,9 +71,10 @@ export function buildDailyGame(key: string, record: DailyRecord | null, id: numb
 export function shareText(game: ActiveGame): string {
   const key = game.dailyKey ?? dateKey()
   const lives = DIFFICULTIES[game.difficulty].lives
-  const result = game.status === 'won' ? `✅ ${livesLeft(game)}/${lives} ❤️ left` : `❌ 0/${lives}`
-  const grid = game.guessed.map((l) => (isCorrect(game, l) ? '🟩' : '🟥')).join('')
-  return `Hangman Daily #${dailyNumber(key)} ${result}\n${grid}${game.hintUsed ? '💡' : ''}`
+  const result = game.status === 'won' ? `Solved · ${livesLeft(game)}/${lives} lives left` : `Missed · 0/${lives}`
+  // Monochrome grid to match the UI: ⬛ = hit, ⬜ = miss.
+  const grid = game.guessed.map((l) => (isCorrect(game, l) ? '⬛' : '⬜')).join('')
+  return `Hangman Daily #${dailyNumber(key)} · ${result}\n${grid}${game.hintUsed ? ' +hint' : ''}`
 }
 
 export function msUntilTomorrow(now = new Date()): number {

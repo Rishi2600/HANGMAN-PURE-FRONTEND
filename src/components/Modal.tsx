@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { motion } from 'motion/react'
+import { CloseIcon } from './Icons'
 
 type Props = {
   title: string
@@ -48,7 +49,7 @@ export function Modal({ title, onClose, children }: Props) {
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-end justify-center p-3 sm:items-center sm:p-6">
       <motion.div
-        className="absolute inset-0 bg-slate-950/55 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         onClick={onClose}
@@ -61,17 +62,17 @@ export function Modal({ title, onClose, children }: Props) {
         initial={{ y: 48, opacity: 0, scale: 0.96 }}
         animate={{ y: 0, opacity: 1, scale: 1 }}
         transition={{ type: 'spring', stiffness: 320, damping: 26 }}
-        className="relative max-h-[92dvh] w-full max-w-md overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl sm:p-8 dark:bg-slate-800"
+        className="relative max-h-[92dvh] w-full max-w-md overflow-y-auto rounded-md border-2 border-ink bg-surface p-6 shadow-hard sm:p-8"
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute top-3 right-3 grid size-9 place-items-center rounded-full text-xl text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-700"
+          className="absolute top-3 right-3 grid size-9 place-items-center rounded-md border-2 border-transparent hover:border-ink"
         >
-          ×
+          <CloseIcon />
         </button>
-        <h2 id={titleId} className="mb-4 text-center font-display text-3xl font-bold">
+        <h2 id={titleId} className="mb-4 text-center font-display text-3xl font-bold tracking-[-0.03em]">
           {title}
         </h2>
         {children}
