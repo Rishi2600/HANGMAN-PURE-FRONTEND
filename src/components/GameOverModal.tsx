@@ -61,7 +61,7 @@ export function GameOverModal({ game, stats, onPlayAgain, onMenu, onClose }: Pro
 
         {won && (
           <dl className="grid w-full grid-cols-2 gap-3">
-            <div className="rounded-md bg-ink p-3 text-paper">
+            <div className="rounded-md border-2 border-ink bg-ink p-3 text-paper">
               <dt className="font-mono text-xs font-bold tracking-widest uppercase opacity-60">Score</dt>
               <dd className="font-mono text-3xl font-bold">+{score(game)}</dd>
             </div>
