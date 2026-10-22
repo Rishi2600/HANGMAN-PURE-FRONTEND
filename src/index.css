@@ -1,0 +1,57 @@
+@import 'tailwindcss';
+
+/* `dark:` utilities follow the .dark class on <html> (set by SettingsProvider), not the OS. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: 'Fredoka', ui-rounded, system-ui, sans-serif;
+  --font-sans: 'Nunito', ui-sans-serif, system-ui, sans-serif;
+
+  --color-paper: #fdf8ef;
+  --color-ink: #1e293b;
+  --color-board: #0f172a;
+
+  --animate-shake: shake 0.42s ease-in-out;
+  --animate-pop: pop 0.25s ease-out;
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-7px); }
+    40%, 80% { transform: translateX(7px); }
+  }
+  @keyframes pop {
+    0% { transform: scale(0.9); }
+    60% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+  }
+}
+
+@layer base {
+  html {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    color-scheme: light;
+    -webkit-tap-highlight-color: transparent;
+  }
+  html:where(.dark) {
+    background-color: var(--color-board);
+    color: var(--color-slate-100);
+    color-scheme: dark;
+  }
+  body {
+    min-height: 100dvh;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-amber-400);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
