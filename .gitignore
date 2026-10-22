@@ -29,3 +29,5 @@ coverage
 
 # Personal React revision notes (kept local on purpose)
 REACT_CONCEPTS.md
+test-results
+playwright-report
