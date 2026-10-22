@@ -19,9 +19,10 @@ export default function StatsModal({ stats, onClose, onReset }: Props) {
     <Modal title="Your stats 📊" onClose={onClose}>
       <dl className="grid grid-cols-3 gap-2.5">
         {tiles.map(({ label, value }) => (
-          <div key={label} className="rounded-2xl bg-slate-100 p-3 text-center dark:bg-slate-900/60">
-            <dd className="font-display text-2xl font-bold sm:text-3xl">{value}</dd>
+          // <dt> must come before <dd>; flex-col-reverse shows the value on top.
+          <div key={label} className="flex flex-col-reverse rounded-2xl bg-slate-100 p-3 text-center dark:bg-slate-900/60">
             <dt className="text-[0.7rem] font-bold tracking-wide text-slate-500 uppercase dark:text-slate-400">{label}</dt>
+            <dd className="font-display text-2xl font-bold sm:text-3xl">{value}</dd>
           </div>
         ))}
       </dl>

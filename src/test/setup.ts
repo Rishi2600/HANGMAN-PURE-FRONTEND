@@ -22,5 +22,6 @@ Object.defineProperty(window, 'matchMedia', {
 
 afterEach(() => {
   cleanup()
+  vi.restoreAllMocks()
   localStorage.clear()
 })
