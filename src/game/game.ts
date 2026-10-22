@@ -44,6 +44,7 @@ export type GameAction =
     }
   | { type: 'guess'; letter: string }
   | { type: 'hint' }
+  | { type: 'restore'; game: ActiveGame }
   | { type: 'quit' }
 
 export const IDLE: GameState = { status: 'idle' }
@@ -113,6 +114,8 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       if (state.status === 'idle' || !canUseHint(state)) return state
       return settle({ ...state, hintUsed: true })
     }
+    case 'restore':
+      return action.game
     case 'quit':
       return IDLE
   }

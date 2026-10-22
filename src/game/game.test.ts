@@ -71,6 +71,11 @@ describe('gameReducer', () => {
     expect(gameReducer(game, { type: 'hint' })).toBe(game)
   })
 
+  it('restores a previously built game as-is', () => {
+    const saved = guess(start(), 'ap')
+    expect(gameReducer(IDLE, { type: 'restore', game: saved })).toBe(saved)
+  })
+
   it('quits back to idle', () => {
     expect(gameReducer(start(), { type: 'quit' })).toEqual({ status: 'idle' })
   })

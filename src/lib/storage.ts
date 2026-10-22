@@ -6,6 +6,7 @@ export const STORAGE_KEYS = {
   stats: 'stats',
   daily: 'daily',
   settings: 'settings',
+  options: 'options',
 } as const
 
 export type StorageKey = (typeof STORAGE_KEYS)[keyof typeof STORAGE_KEYS]
