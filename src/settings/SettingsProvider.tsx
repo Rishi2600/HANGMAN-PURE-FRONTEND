@@ -19,7 +19,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const dark = settings.theme === 'dark'
     document.documentElement.classList.toggle('dark', dark)
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#0f172a' : '#fdf8ef')
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#0a0a0a' : '#fafafa')
   }, [settings.theme])
 
   // Memoised so consumers only re-render when settings actually change.

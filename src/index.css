@@ -3,44 +3,62 @@
 /* `dark:` utilities follow the .dark class on <html> (set by SettingsProvider), not the OS. */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/*
+ * Monochrome palette. Components only use these semantic colours (bg-paper, text-ink, border-line…);
+ * the .dark class swaps the underlying values, so almost nothing needs a `dark:` variant.
+ */
+:root {
+  --paper: #fafafa;
+  --surface: #ffffff;
+  --ink: #0a0a0a;
+  --muted: #6b6b6b;
+  --line: #d4d4d4;
+  --wash: #f0f0f0;
+}
+.dark {
+  --paper: #0a0a0a;
+  --surface: #141414;
+  --ink: #f5f5f5;
+  --muted: #9a9a9a;
+  --line: #3a3a3a;
+  --wash: #1c1c1c;
+}
+
+/* `inline` makes the utilities reference the variables directly, so they follow the theme switch. */
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-wash: var(--wash);
+}
+
 @theme {
-  --font-display: 'Fredoka', ui-rounded, system-ui, sans-serif;
-  --font-sans: 'Nunito', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 
-  --color-paper: #fdf8ef;
-  --color-ink: #1e293b;
-  --color-board: #0f172a;
+  /* Hard offset shadows in ink: the "printed" look that replaces coloured depth. */
+  --shadow-hard: 4px 4px 0 var(--ink);
+  --shadow-hard-sm: 2px 2px 0 var(--ink);
 
-  --animate-shake: shake 0.42s ease-in-out;
-  --animate-pop: pop 0.25s ease-out;
   --animate-sway: sway 2.4s ease-in-out infinite;
 
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20%, 60% { transform: translateX(-7px); }
-    40%, 80% { transform: translateX(7px); }
-  }
   @keyframes sway {
     0%, 100% { rotate: 3deg; }
     50% { rotate: -3deg; }
-  }
-  @keyframes pop {
-    0% { transform: scale(0.9); }
-    60% { transform: scale(1.08); }
-    100% { transform: scale(1); }
   }
 }
 
 @layer base {
   html {
-    background-color: var(--color-paper);
-    color: var(--color-ink);
+    background-color: var(--paper);
+    color: var(--ink);
     color-scheme: light;
     -webkit-tap-highlight-color: transparent;
   }
   html:where(.dark) {
-    background-color: var(--color-board);
-    color: var(--color-slate-100);
     color-scheme: dark;
   }
   body {
@@ -48,9 +66,13 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
+  ::selection {
+    background-color: var(--ink);
+    color: var(--paper);
+  }
   :focus-visible {
-    outline: 3px solid var(--color-amber-400);
-    outline-offset: 2px;
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
   }
 }
 
