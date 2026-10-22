@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# PWA dev build + test output
+dev-dist
+coverage
+
+# Personal React revision notes (kept local on purpose)
+REACT_CONCEPTS.md
