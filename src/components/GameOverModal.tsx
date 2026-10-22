@@ -74,7 +74,7 @@ export function GameOverModal({ game, stats, onPlayAgain, onMenu, onClose }: Pro
 
         {game.mode === 'daily' && (
           <div className="flex w-full flex-col items-center gap-2 rounded-2xl bg-slate-100 p-4 dark:bg-slate-900/60">
-            <Button variant="success" onClick={share} className="w-full">
+            <Button variant="secondary" onClick={share} className="w-full">
               {copied ? 'Copied! ✅' : 'Share result 📤'}
             </Button>
             <p className="text-sm text-slate-600 dark:text-slate-300">

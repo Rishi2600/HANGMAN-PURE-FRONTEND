@@ -15,7 +15,7 @@ export function ChoiceGroup<T extends string>({ legend, value, options, onChange
 
   return (
     <fieldset>
-      <legend className="mb-2 text-sm font-bold tracking-wider text-slate-500 uppercase dark:text-slate-400">
+      <legend className="mb-2 font-mono text-xs font-bold tracking-widest text-muted uppercase">
         {legend}
       </legend>
       <div className="flex flex-wrap gap-2">
@@ -29,7 +29,7 @@ export function ChoiceGroup<T extends string>({ legend, value, options, onChange
               onChange={() => onChange(option.value)}
               className="peer sr-only"
             />
-            <span className="inline-block rounded-full border-2 border-slate-300 px-3.5 py-1.5 font-semibold transition-colors peer-checked:border-amber-400 peer-checked:bg-amber-400 peer-checked:text-ink peer-focus-visible:outline-3 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-amber-400 hover:border-amber-400 dark:border-slate-600">
+            <span className="inline-block rounded-md border-2 border-line px-3.5 py-1.5 font-medium transition-colors peer-checked:border-ink peer-checked:bg-ink peer-checked:text-paper peer-focus-visible:outline-2 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-ink hover:border-ink">
               {option.label}
             </span>
           </label>

@@ -1,20 +1,20 @@
 import type { ComponentProps } from 'react'
 
 const VARIANTS = {
-  primary: 'bg-amber-400 text-ink shadow-amber-600 hover:bg-amber-300',
-  secondary:
-    'bg-white text-ink shadow-slate-300 hover:bg-slate-50 dark:bg-slate-700 dark:text-slate-100 dark:shadow-slate-950 dark:hover:bg-slate-600',
-  success: 'bg-emerald-500 text-white shadow-emerald-700 hover:bg-emerald-400',
+  primary: 'border-ink bg-ink text-paper shadow-[4px_4px_0_var(--muted)]',
+  secondary: 'border-ink bg-surface text-ink shadow-hard hover:bg-wash',
+  // For use on an ink-coloured panel: the colours flip so the button still stands out.
+  inverse: 'border-paper bg-paper text-ink shadow-[4px_4px_0_var(--muted)]',
 }
 
 type Props = ComponentProps<'button'> & { variant?: keyof typeof VARIANTS }
 
-/** A chunky "pressable" button. Any extra props (onClick, disabled, aria-*) pass straight through. */
+/** A flat, bordered button that "presses" into its hard shadow. Extra props (onClick, disabled, aria-*) pass through. */
 export function Button({ variant = 'primary', className = '', type = 'button', ...rest }: Props) {
   return (
     <button
       type={type}
-      className={`inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-display text-lg font-semibold shadow-[0_4px_0] transition-[transform,box-shadow,background-color] duration-100 enabled:active:translate-y-1 enabled:active:shadow-[0_0_0] disabled:cursor-not-allowed disabled:opacity-50 ${VARIANTS[variant]} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-md border-2 px-5 py-3 font-display text-base font-semibold tracking-tight transition-[transform,box-shadow,background-color] duration-100 enabled:active:translate-x-1 enabled:active:translate-y-1 enabled:active:shadow-none disabled:cursor-not-allowed disabled:opacity-40 ${VARIANTS[variant]} ${className}`}
       {...rest}
     />
   )
