@@ -13,11 +13,16 @@
 
   --animate-shake: shake 0.42s ease-in-out;
   --animate-pop: pop 0.25s ease-out;
+  --animate-sway: sway 2.4s ease-in-out infinite;
 
   @keyframes shake {
     0%, 100% { transform: translateX(0); }
     20%, 60% { transform: translateX(-7px); }
     40%, 80% { transform: translateX(7px); }
+  }
+  @keyframes sway {
+    0%, 100% { rotate: 3deg; }
+    50% { rotate: -3deg; }
   }
   @keyframes pop {
     0% { transform: scale(0.9); }
