@@ -1,10 +1,10 @@
 import type { ComponentProps } from 'react'
 
 const VARIANTS = {
-  primary: 'border-ink bg-ink text-paper shadow-[4px_4px_0_var(--muted)]',
+  primary: 'border-ink bg-kernel text-kernel-ink shadow-hard',
   secondary: 'border-ink bg-surface text-ink shadow-hard hover:bg-wash',
-  // For use on an ink-coloured panel: the colours flip so the button still stands out.
-  inverse: 'border-paper bg-paper text-ink shadow-[4px_4px_0_var(--muted)]',
+  // For use on an ink-coloured panel: border and shadow flip to the ground colour so the edge still shows.
+  inverse: 'border-paper bg-kernel text-kernel-ink shadow-[4px_4px_0_var(--paper)]',
 }
 
 type Props = ComponentProps<'button'> & { variant?: keyof typeof VARIANTS }

@@ -49,7 +49,7 @@ export function Modal({ title, onClose, children }: Props) {
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-end justify-center p-3 sm:items-center sm:p-6">
       <motion.div
-        className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"
+        className="absolute inset-0 bg-scrim/60 backdrop-blur-[2px]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         onClick={onClose}

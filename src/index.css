@@ -4,24 +4,37 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
- * Monochrome palette. Components only use these semantic colours (bg-paper, text-ink, border-line…);
- * the .dark class swaps the underlying values, so almost nothing needs a `dark:` variant.
+ * Pistachio palette, taken from the nut: the pale shell is the ground, roasted green is the ink,
+ * the kernel green marks actions and hits, the papery wine skin marks misses, the husk tan is wood.
+ * Components only use these semantic colours (bg-paper, text-ink, bg-kernel…); the .dark class swaps
+ * the underlying values, so almost nothing needs a `dark:` variant.
+ * Every text pairing here passes WCAG AA (4.5:1) in both themes.
  */
 :root {
-  --paper: #fafafa;
-  --surface: #ffffff;
-  --ink: #0a0a0a;
-  --muted: #6b6b6b;
-  --line: #d4d4d4;
-  --wash: #f0f0f0;
+  --paper: #f1f3e9;
+  --surface: #fafbf5;
+  --ink: #1f2b16;
+  --muted: #5b6650;
+  --line: #c5ceb2;
+  --wash: #e3ead2;
+  --kernel: #93c572;
+  --kernel-ink: #1f2b16; /* text on kernel: stays dark in both themes */
+  --skin: #8e3b52;
+  --husk: #8a7252;
+  --scrim: #0e1409; /* modal backdrop: stays dark in both themes */
 }
 .dark {
-  --paper: #0a0a0a;
-  --surface: #141414;
-  --ink: #f5f5f5;
-  --muted: #9a9a9a;
-  --line: #3a3a3a;
-  --wash: #1c1c1c;
+  --paper: #13180f;
+  --surface: #1b2216;
+  --ink: #e9eedc;
+  --muted: #9da78e;
+  --line: #364130;
+  --wash: #242d1e;
+  --kernel: #9fcf7c;
+  --kernel-ink: #13180f;
+  --skin: #e08a9c;
+  --husk: #b9a07a;
+  --scrim: #050803;
 }
 
 /* `inline` makes the utilities reference the variables directly, so they follow the theme switch. */
@@ -32,6 +45,11 @@
   --color-muted: var(--muted);
   --color-line: var(--line);
   --color-wash: var(--wash);
+  --color-kernel: var(--kernel);
+  --color-kernel-ink: var(--kernel-ink);
+  --color-skin: var(--skin);
+  --color-husk: var(--husk);
+  --color-scrim: var(--scrim);
 }
 
 @theme {
@@ -67,8 +85,8 @@
     -webkit-font-smoothing: antialiased;
   }
   ::selection {
-    background-color: var(--ink);
-    color: var(--paper);
+    background-color: var(--kernel);
+    color: var(--kernel-ink);
   }
   :focus-visible {
     outline: 2px solid var(--ink);

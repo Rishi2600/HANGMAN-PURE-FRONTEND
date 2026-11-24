@@ -14,7 +14,7 @@ export function LivesBar({ livesLeft, maxLives }: Props) {
         {Array.from({ length: maxLives }, (_, i) => (
           <span
             key={i}
-            className={`size-3 border-2 transition-colors duration-300 sm:size-3.5 ${i < livesLeft ? 'border-ink bg-ink' : 'border-line'}`}
+            className={`size-3 border-2 transition-colors duration-300 sm:size-3.5 ${i < livesLeft ? 'border-ink bg-kernel' : 'border-line'}`}
           />
         ))}
       </div>

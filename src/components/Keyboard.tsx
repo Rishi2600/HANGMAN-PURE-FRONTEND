@@ -9,11 +9,11 @@ type Props = {
   onGuess: (letter: string) => void
 }
 
-// No colour to lean on, so state is shown by fill: hits are solid ink, misses fade out and get struck through.
+// Colour backs up shape, never replaces it: hits are filled kernel green, misses turn wine and get struck through.
 const KEY_STYLES = {
   idle: 'border-ink bg-surface text-ink shadow-hard-sm hover:bg-wash',
-  correct: 'border-ink bg-ink text-paper',
-  wrong: 'border-line bg-transparent text-muted line-through decoration-2',
+  correct: 'border-ink bg-kernel text-kernel-ink',
+  wrong: 'border-skin/40 bg-transparent text-skin line-through decoration-2',
 }
 
 // memo: the keyboard only re-renders when its props change, not on every parent render.
