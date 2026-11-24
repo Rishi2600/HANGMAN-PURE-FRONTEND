@@ -63,7 +63,7 @@ export function StartScreen(props: Props) {
       <section className={`${card} bg-ink text-paper`}>
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className={`${eyebrow} opacity-60`}>No. {dailyNumber(today)}</p>
+            <p className={`${eyebrow} opacity-70`}>No. {dailyNumber(today)}</p>
             <h2 className="font-display text-2xl font-bold tracking-tight">Daily challenge</h2>
             <p className="opacity-70">
               One word for everyone, every day.{' '}

@@ -72,8 +72,8 @@ export function shareText(game: ActiveGame): string {
   const key = game.dailyKey ?? dateKey()
   const lives = DIFFICULTIES[game.difficulty].lives
   const result = game.status === 'won' ? `Solved · ${livesLeft(game)}/${lives} lives left` : `Missed · 0/${lives}`
-  // Monochrome grid to match the UI: ⬛ = hit, ⬜ = miss.
-  const grid = game.guessed.map((l) => (isCorrect(game, l) ? '⬛' : '⬜')).join('')
+  // Grid matches the keyboard colours: 🟩 = hit (kernel green), 🟥 = miss (wine skin).
+  const grid = game.guessed.map((l) => (isCorrect(game, l) ? '🟩' : '🟥')).join('')
   return `Hangman Daily #${dailyNumber(key)} · ${result}\n${grid}${game.hintUsed ? ' +hint' : ''}`
 }
 

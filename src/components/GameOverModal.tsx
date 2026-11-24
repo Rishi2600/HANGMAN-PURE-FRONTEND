@@ -50,7 +50,7 @@ export function GameOverModal({ game, stats, onPlayAgain, onMenu, onClose }: Pro
         <div>
           <p className="font-mono text-xs font-bold tracking-widest text-muted uppercase">The word was</p>
           <p
-            className={`my-1 font-mono text-4xl font-bold tracking-[0.15em] uppercase ${won ? '' : 'text-muted line-through decoration-2'}`}
+            className={`my-1 font-mono text-4xl font-bold tracking-[0.15em] uppercase ${won ? '' : 'text-skin line-through decoration-2'}`}
           >
             {game.word}
           </p>
@@ -61,8 +61,8 @@ export function GameOverModal({ game, stats, onPlayAgain, onMenu, onClose }: Pro
 
         {won && (
           <dl className="grid w-full grid-cols-2 gap-3">
-            <div className="rounded-md border-2 border-ink bg-ink p-3 text-paper">
-              <dt className="font-mono text-xs font-bold tracking-widest uppercase opacity-60">Score</dt>
+            <div className="rounded-md border-2 border-ink bg-kernel p-3 text-kernel-ink">
+              <dt className="font-mono text-xs font-bold tracking-widest uppercase">Score</dt>
               <dd className="font-mono text-3xl font-bold">+{score(game)}</dd>
             </div>
             <div className="rounded-md border-2 border-ink p-3">

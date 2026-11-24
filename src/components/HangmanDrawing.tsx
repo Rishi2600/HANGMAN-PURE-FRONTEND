@@ -45,7 +45,8 @@ function HangmanDrawingImpl({ livesLeft, status }: Props) {
       strokeLinecap="square"
       strokeLinejoin="miter"
     >
-      <g className="stroke-muted">{indices.filter((i) => i < GALLOWS).map(stroke)}</g>
+      {/* The gallows is wood, so it takes the husk tan; the figure stays in ink. */}
+      <g className="stroke-husk">{indices.filter((i) => i < GALLOWS).map(stroke)}</g>
 
       <motion.g
         className={`stroke-ink ${lost ? 'animate-sway' : ''}`}
@@ -57,6 +58,7 @@ function HangmanDrawingImpl({ livesLeft, status }: Props) {
         {lost && (
           <motion.path
             d="M131 57 l6 6 m0 -6 l-6 6 M143 57 l6 6 m0 -6 l-6 6"
+            className="stroke-skin"
             strokeWidth={3}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

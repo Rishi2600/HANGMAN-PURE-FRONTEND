@@ -23,14 +23,14 @@ export function HangmanWord({ word, guessed, reveal }: Props) {
             // Index keys are fine here: the list never reorders and letters can repeat.
             <span
               key={i}
-              className={`flex h-12 w-8 items-end justify-center border-b-4 pb-1 font-mono text-3xl font-bold uppercase sm:h-16 sm:w-11 sm:text-5xl ${visible && !found ? 'border-line' : 'border-ink'}`}
+              className={`flex h-12 w-8 items-end justify-center border-b-4 pb-1 font-mono text-3xl font-bold uppercase sm:h-16 sm:w-11 sm:text-5xl ${visible && !found ? 'border-skin/40' : 'border-ink'}`}
             >
               {visible && (
                 <motion.span
                   initial={{ y: 14, opacity: 0, scale: 0.6 }}
                   animate={{ y: 0, opacity: 1, scale: 1 }}
                   transition={{ type: 'spring', stiffness: 420, damping: 18 }}
-                  className={found ? '' : 'text-muted'}
+                  className={found ? '' : 'text-skin'}
                 >
                   {letter}
                 </motion.span>
